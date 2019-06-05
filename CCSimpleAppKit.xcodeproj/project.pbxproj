@@ -16,8 +16,6 @@
 		D6A303BE22A523660022D891 /* CCSimpleAppKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303BD22A523660022D891 /* CCSimpleAppKitTests.m */; };
 		D6A303C922A523660022D891 /* CCSimpleAppKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303C822A523660022D891 /* CCSimpleAppKitUITests.m */; };
 		D6A303D922A523CC0022D891 /* CCNetworkRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303D722A523CB0022D891 /* CCNetworkRequestFactory.m */; };
-		D6A303E722A525680022D891 /* CCBaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303E022A525660022D891 /* CCBaseListViewController.m */; };
-		D6A303E822A525680022D891 /* CCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303E122A525660022D891 /* CCBaseViewController.m */; };
 		D6A303F522A5262B0022D891 /* CCConvenientRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303F222A5262A0022D891 /* CCConvenientRequest.m */; };
 		D6A303F622A5262B0022D891 /* CCUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303F322A5262B0022D891 /* CCUploadRequest.m */; };
 		D6A303F922A5271F0022D891 /* CCPagingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A303F722A5271E0022D891 /* CCPagingRequest.m */; };
@@ -61,10 +59,6 @@
 		D6A303CA22A523660022D891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A303D722A523CB0022D891 /* CCNetworkRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkRequestFactory.m; sourceTree = "<group>"; };
 		D6A303D822A523CC0022D891 /* CCNetworkRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkRequestFactory.h; sourceTree = "<group>"; };
-		D6A303E022A525660022D891 /* CCBaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBaseListViewController.m; sourceTree = "<group>"; };
-		D6A303E122A525660022D891 /* CCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBaseViewController.m; sourceTree = "<group>"; };
-		D6A303E422A525670022D891 /* CCBaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBaseListViewController.h; sourceTree = "<group>"; };
-		D6A303E522A525670022D891 /* CCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBaseViewController.h; sourceTree = "<group>"; };
 		D6A303EE22A526290022D891 /* CCConvenientRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCConvenientRequest.h; sourceTree = "<group>"; };
 		D6A303F022A5262A0022D891 /* CCUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUploadRequest.h; sourceTree = "<group>"; };
 		D6A303F222A5262A0022D891 /* CCConvenientRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCConvenientRequest.m; sourceTree = "<group>"; };
@@ -164,20 +158,8 @@
 			children = (
 				D6CA927622A66B5B00643FA9 /* CCNetworkService.h */,
 				D6A303ED22A526180022D891 /* Network */,
-				D6A303DE22A5253D0022D891 /* Controllers */,
 			);
 			path = SimpleKit;
-			sourceTree = "<group>";
-		};
-		D6A303DE22A5253D0022D891 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D6A303E422A525670022D891 /* CCBaseListViewController.h */,
-				D6A303E022A525660022D891 /* CCBaseListViewController.m */,
-				D6A303E522A525670022D891 /* CCBaseViewController.h */,
-				D6A303E122A525660022D891 /* CCBaseViewController.m */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D6A303ED22A526180022D891 /* Network */ = {
@@ -339,14 +321,12 @@
 				D6A303A922A523630022D891 /* ViewController.m in Sources */,
 				D6CA91E322A60E4A00643FA9 /* CCDefaultResponseRawDataHandler.m in Sources */,
 				D6CA923922A64D8300643FA9 /* ListViewController.m in Sources */,
-				D6A303E722A525680022D891 /* CCBaseListViewController.m in Sources */,
 				D6A303D922A523CC0022D891 /* CCNetworkRequestFactory.m in Sources */,
 				D6A303F922A5271F0022D891 /* CCPagingRequest.m in Sources */,
 				D6A303F522A5262B0022D891 /* CCConvenientRequest.m in Sources */,
 				D6A303F622A5262B0022D891 /* CCUploadRequest.m in Sources */,
 				D6A303B422A523660022D891 /* main.m in Sources */,
 				D6A303A622A523630022D891 /* AppDelegate.m in Sources */,
-				D6A303E822A525680022D891 /* CCBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
