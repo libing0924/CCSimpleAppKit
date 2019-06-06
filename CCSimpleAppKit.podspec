@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CCSimpleAppKit"
-  s.version      = "0.1.0"
+  s.version      = "1.0.0"
   s.summary      = "CCSimpleAppKit promote develop efficient."
 
   s.description  = <<-DESC

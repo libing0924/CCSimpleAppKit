@@ -11,6 +11,8 @@
 NSString * const kDefaultPagingRequestPageNumKey = @"pageNum";
 NSString * const kDefaultPagingRequestPageSizeKey = @"pageSize";
 
+static Class pagingRequestGlobeHandler = nil;
+
 @implementation CCPagingRequest
 
 - (instancetype)init {
@@ -28,22 +30,22 @@ NSString * const kDefaultPagingRequestPageSizeKey = @"pageSize";
 - (void)firstPageRequest {
     
     _pageNumber = 1;
-    [self requestGET];
+    [self request];
 }
 
 - (void)nextPageRequest {
     
-    [self requestGET];
+    [self request];
 }
 
-- (void)requestGET {
+- (void)request {
     
     NSAssert(self.urlStr, @"Request url is null");
     
     NSDictionary *parameters = nil;
-    if (self.pageingHandler && [self.pageingHandler respondsToSelector:@selector(parametersWithPagingRequest:originalParameters:)]) {
+    if (self.pagingHandler && [self.pagingHandler respondsToSelector:@selector(parametersWithPagingRequest:originalParameters:)]) {
         
-        parameters = [self.pageingHandler parametersWithPagingRequest:self originalParameters:nil];
+        parameters = [self.pagingHandler parametersWithPagingRequest:self originalParameters:nil];
     }
         
     if(!parameters) parameters = [NSDictionary dictionaryWithObjects:@[@(_pageNumber), @(_pageSize)] forKeys:@[kDefaultPagingRequestPageNumKey, kDefaultPagingRequestPageSizeKey]];
@@ -74,13 +76,26 @@ NSString * const kDefaultPagingRequestPageSizeKey = @"pageSize";
         
         [self.dataSource addObjectsFromArray:datas];
         
-        BOOL noMoreData = NO;
-        if (datas.count < self.pageSize) {
+        BOOL hasNoMoreData = NO;
+        NSUInteger totalCount = 0;
+        if (self.pagingHandler && [self.pagingHandler respondsToSelector:@selector(pagingRequestTotalData:metaData:)]) {
             
-            noMoreData = YES;
-            if (self.pageingHandler && [self.pageingHandler respondsToSelector:@selector(pagingRequestHasNoMoreData:)]) {
+            totalCount = [self.pagingHandler pagingRequestTotalData:self metaData:metaModel];
+        }
+        
+        if (totalCount == 0) {
+            
+            if (datas.count < self.pageSize) hasNoMoreData = YES;
+        } else {
+            
+            if (self.dataSource.count < totalCount) hasNoMoreData = YES;
+        }
+        
+        if (hasNoMoreData) {
+            
+            if (self.pagingHandler && [self.pagingHandler respondsToSelector:@selector(pagingRequestHasNoMoreData:)]) {
                 
-                [self.pageingHandler pagingRequestHasNoMoreData:self];
+                [self.pagingHandler pagingRequestHasNoMoreData:self];
             }
         } else {
             
@@ -88,12 +103,13 @@ NSString * const kDefaultPagingRequestPageSizeKey = @"pageSize";
         }
     }
     
-    if (self.pageingHandler && [self.pageingHandler respondsToSelector:@selector(pagingRequestDidEnd:metaData:)]) {
+    if (self.pagingHandler && [self.pagingHandler respondsToSelector:@selector(pagingRequestDidEnd:metaData:)]) {
         
-        [self.pageingHandler pagingRequestDidEnd:self metaData:metaModel];
+        [self.pagingHandler pagingRequestDidEnd:self metaData:metaModel];
     }
 }
 
+#pragma mark - getter
 - (NSMutableArray *)dataSource {
     
     if (_dataSource) return _dataSource;
@@ -103,5 +119,16 @@ NSString * const kDefaultPagingRequestPageSizeKey = @"pageSize";
     return _dataSource;
 }
 
+- (id<CCPagingRequestHandler>)pagingHandler {
+    
+    if (_pagingHandler) return _pagingHandler;
+    
+    return [pagingRequestGlobeHandler new];
+}
+
++ (void)registerGlobePagingRequestHandler:(Class<CCPagingRequestHandler>)globePagingRequestService {
+    
+    pagingRequestGlobeHandler = globePagingRequestService;
+}
 
 @end

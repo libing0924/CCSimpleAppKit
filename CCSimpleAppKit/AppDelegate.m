@@ -7,10 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CCNetworkRequestFactory.h"
-
-// module
-#import "CCMassiveKitModule.h"
+#import "CCNetworkFactory.h"
 
 @interface AppDelegate ()
 
@@ -25,9 +22,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [UITabBarController new];
-    
-    // 配置
-    [CCMassiveKitModule configMassiveKit];
     
     return YES;
 }
