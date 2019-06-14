@@ -6,6 +6,7 @@
 //  Copyright © 2019 李冰. All rights reserved.
 //
 
+// SimpleAppKit的网络服务最上层
 // 提供给开发人员的网络请求业务层,可通过该层 添加统一的参数、添加http header、配置参数加密等
 // 网络请求便利工具，可根据不同后端的开发模块接口标准分别进行请求配置，也可使用全局配置
 
@@ -108,7 +109,6 @@
 
 @property (nonatomic, strong) id<CCNetworkRequestHandler> requestHandler;
 
-// 模型绑定
 - (void)requestGET:(NSString *)urlStr
         parameters:(NSDictionary *)params
           response:(nullable void (^)(CCResponseMetaModel *metaModel))response;
